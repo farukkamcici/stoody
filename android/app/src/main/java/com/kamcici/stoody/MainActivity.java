@@ -1,5 +1,5 @@
-package io.ionic.starter;
-
+package com.kamcici.stoody;
+import android.os.Bundle;
 import com.google.firebase.FirebaseApp;
 import com.getcapacitor.BridgeActivity;
 

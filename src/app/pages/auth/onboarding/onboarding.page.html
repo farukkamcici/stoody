@@ -1,0 +1,30 @@
+<ion-content [fullscreen]="true">
+  <!-- <ion-text>Hoşgelidiniz!</ion-text>
+  <ion-text>Stoody: Çalışma Destekçin</ion-text>
+
+  <ion-button (click)="navigateToRegister()">Stoody'e Katıl</ion-button> -->
+
+  <ion-content>
+    <div class="container">
+      <ion-title>Hoş Geldiniz</ion-title>
+      <ion-text color="medium">
+        <p>Devam etmek için giriş yapın veya yeni bir hesap oluşturun.</p>
+      </ion-text>
+  
+      <div class="button-container">
+        <ion-button expand="block" color="primary" (click)="signIn()">Giriş Yap</ion-button>
+        <ion-button expand="block" color="success" (click)="signUp()">Kaydol</ion-button>
+      </div>
+  
+      <ion-text class="alternative-text" color="medium">veya</ion-text>
+  
+      <div class="social-buttons">
+        <ion-button expand="block" color="light" (click)="signInWithGoogle()">
+          <ion-icon name="logo-google" slot="start"></ion-icon>
+          Google ile Giriş Yap
+        </ion-button>
+      </div>
+    </div>
+  </ion-content>
+  
+</ion-content>
