@@ -1,16 +1,22 @@
-<ion-content [fullscreen]="true" class="ion-padding">
-    <form (ngSubmit)="signIn()">
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label position="floating">Şifre</ion-label>
-        <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
-      </ion-item>
-      
-      <ion-button expand="full" type="submit">Giriş Yap</ion-button>
-    </form>
-  </ion-content>
+<ion-content [fullscreen]="true">
+    <div class="container">
+      <ion-title>Hoş Geldiniz</ion-title>
+      <ion-text color="medium">
+        <p>Devam etmek için giriş yapın veya yeni bir hesap oluşturun.</p>
+      </ion-text>
   
+      <div class="button-container">
+        <ion-button expand="block" color="primary" (click)="signIn()">Giriş Yap</ion-button>
+        <ion-button expand="block" color="success" (click)="signUp()">Kaydol</ion-button>
+      </div>
+  
+      <ion-text class="alternative-text" color="medium">veya</ion-text>
+  
+      <div class="social-buttons">
+        <ion-button expand="block" color="light" (click)="signInWithGoogle()">
+          <ion-icon name="logo-google" slot="start"></ion-icon>
+          Google ile Giriş Yap
+        </ion-button>
+      </div>
+    </div>
+</ion-content>

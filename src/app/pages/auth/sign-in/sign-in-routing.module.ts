@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: SignInPage
+  },
+  {
+    path: 'login-form',
+    loadChildren: () => import('./login-form/login-form.module').then( m => m.LoginFormPageModule)
   }
 ];
 

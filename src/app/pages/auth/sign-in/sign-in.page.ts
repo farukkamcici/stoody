@@ -12,19 +12,27 @@ export class SignInPage {
   public email: string = '';
   public password: string = '';
 
-  constructor(
-    private authService: AuthService,
+  constructor(private authService: AuthService,
     private router: Router,
   ) { }
 
   public signIn() {
-    this.authService.signIn(this.email, this.password)
+    this.router.navigate(['auth/sign-in/login-form'])
+  }
+
+  public signUp() {
+    this.router.navigate(['auth/sign-up'])
+
+  }
+
+  public signInWithGoogle() {
+    this.authService.signInWithGoogle()
       .then((res) => {
-        console.log("Giriş başarılı:", res);
-        this.router.navigate(['content/home'])
+        console.log("Google ile giriş başarılı:", res);
       })
       .catch((error) => {
-        console.error("Giriş hatası:", error);
+        console.error("Google ile giriş hatası:", error);
       });
   }
+
 }
