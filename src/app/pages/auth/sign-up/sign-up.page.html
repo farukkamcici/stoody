@@ -1,2 +1,16 @@
-<ion-content [fullscreen]="true">
-</ion-content>
+  <ion-content [fullscreen]="true" class="ion-padding">
+    <form (ngSubmit)="signUp()">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Şifre</ion-label>
+        <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
+      </ion-item>
+      
+      <ion-button expand="full" type="submit">Kayıt Ol</ion-button>
+    </form>
+  </ion-content>
+  

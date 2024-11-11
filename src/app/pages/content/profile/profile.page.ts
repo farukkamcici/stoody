@@ -15,7 +15,6 @@ export class ProfilePage {
   ) { }
 
   public async signOut() {
-    await this.authService.signOut();
-    return this.router.navigate(['auth/onboarding']);
+    this.authService.signOut();
   }
 }
