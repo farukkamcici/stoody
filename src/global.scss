@@ -36,17 +36,26 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 // @import "@ionic/angular/css/palettes/dark.system.css";
 
+html{
+    font-size: 16px;
+}
+
+ion-content,
+ion-toolbar,
+ion-footer{
+    --background: var(--ion-color-gray-100);
+}
+
 ion-toolbar {
     --padding-top: 0px;
     --padding-bottom: 0px;
     --padding-start: 0px;
     --padding-end: 15px;
-    --background: white;
     --border-width: 0px !important;
 
 
     ion-back-button {
-        --color: gray !important;
+        --color: var(ion-color-dark) !important;
         text-transform: none !important;
         --icon-font-size: 20px;
         font-size: 14px !important;
@@ -58,10 +67,44 @@ ion-toolbar {
 
 ion-button,
 ion-back-button{
+    --border-radius: 7px;
+    --background-hover: none;
+    --background-focused: none;
+    --background-activated: none;
+    --background-activated-opacity: none;
+    --background-focused-opacity: none;
+    --background-hover-opacity: none;
+    --box-shadow: none;
+    --padding-start: 0;
+    --padding-end: 0;
     --ripple-color: transparent;
+    text-transform: none;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 ion-tab-button{
     --ripple-color: #afc4c3;
+}
+
+.full-btn{
+    width: 100%;
+    min-height: 50px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.dark-btn{
+    --background: var(--ion-color-primary);
+    color: var(--ion-color-light);
+}
+
+.light-btn{
+    --background: var(--ion-color-secondary);
+    color: var(--ion-color-primary);
+}
+
+.inner-padding{
+    padding: 0 25px;
 }
 

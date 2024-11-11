@@ -17,7 +17,14 @@ export class SignInPage {
   ) { }
 
   public signIn() {
-    this.router.navigate(['auth/sign-in/login-form'])
+    this.authService.signIn(this.email, this.password)
+      .then((res) => {
+        console.log("Giriş başarılı:", res);
+        this.router.navigate(['content/home'])
+      })
+      .catch((error) => {
+        console.error("Giriş hatası:", error);
+      });
   }
 
   public signUp() {

@@ -1,22 +1,51 @@
 <ion-content [fullscreen]="true">
-    <div class="container">
-      <ion-title>Hoş Geldiniz</ion-title>
-      <ion-text color="medium">
-        <p>Devam etmek için giriş yapın veya yeni bir hesap oluşturun.</p>
-      </ion-text>
-  
-      <div class="button-container">
-        <ion-button expand="block" color="primary" (click)="signIn()">Giriş Yap</ion-button>
-        <ion-button expand="block" color="success" (click)="signUp()">Kaydol</ion-button>
+    <div class="login-container">
+      <div class="text-container inner-padding">
+        <ion-title>Stoody'e <br> Hoş Geldin</ion-title>
+        <ion-text>
+          <p>Hemen giriş yap ve Stoody yolculuğuna başla!</p>
+        </ion-text>
       </div>
+
+      <div class="inner-padding">
+        <form>
+
+          <div class="form-input">
+            <ion-input labelPlacement="stacked"  label="E-posta" fill="outline" [(ngModel)]="email" name="email" type="email" required="true">
+            </ion-input>
+          </div>
   
-      <ion-text class="alternative-text" color="medium">veya</ion-text>
+          <div class="form-input">
+            <ion-input labelPlacement="stacked"  label="Şifre" fill="outline" [(ngModel)]="password" name="email" type="password" required="true">
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
+          </div>
   
-      <div class="social-buttons">
-        <ion-button expand="block" color="light" (click)="signInWithGoogle()">
-          <ion-icon name="logo-google" slot="start"></ion-icon>
-          Google ile Giriş Yap
-        </ion-button>
+        </form>
+  
+    
+        <div class="button-container">
+          <ion-button class="dark-btn full-btn" (click)="signIn()">Giriş Yap</ion-button>
+        </div>
+    
+        <div class="or-container">
+          <div class="line"></div>
+          <ion-text class="or-text">veya</ion-text>
+          <div class="line"></div>
+        </div>
+          
+        <div class="social-buttons">
+          <ion-button class="google-btn full-btn" (click)="signInWithGoogle()">
+            <ion-icon name="logo-google" slot="start"></ion-icon>
+            Google ile Giriş Yap
+          </ion-button>
+        </div>
+  
+        <div class="register-text">
+          <ion-text>Bir hesabın yok mu? <span (click)="signUp()">Kayıt Ol</span></ion-text>
+        </div>
       </div>
+
+
     </div>
 </ion-content>
