@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class SignUpPage {
 
+  public username: string = '';
   public email: string = '';
   public password: string = '';
 
@@ -18,7 +19,7 @@ export class SignUpPage {
   ) { }
 
   public signUp() {
-    this.authService.signUp(this.email, this.password)
+    this.authService.signUp(this.email, this.password, this.username)
       .then((res) => {
         console.log("Kayıt başarılı:", res);
         this.router.navigate(['auth/sign-in'])
