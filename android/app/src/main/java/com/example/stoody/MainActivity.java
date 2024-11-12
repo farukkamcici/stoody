@@ -1,4 +1,4 @@
-package com.example.stoody;
+package com.kamcici.stoody;
 
 import com.getcapacitor.BridgeActivity;
 

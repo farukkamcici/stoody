@@ -1,0 +1,48 @@
+
+{
+  "project_info": {
+    "project_number": "643290041553",
+    "firebase_url": "https://stoody-93a8c-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "stoody-93a8c",
+    "storage_bucket": "stoody-93a8c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643290041553:android:3fdb599d3308110b1e09f0",
+        "android_client_info": {
+          "package_name": "com.kamcici.stoody"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "643290041553-ekuvfusdftotgktbiitr3nm2gf14u2gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAn37JeoXjySoeNEj9krTj2j9LyneMxnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643290041553-ekuvfusdftotgktbiitr3nm2gf14u2gg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "643290041553-68tgvn419h4hn0titl5v6hd01kiqkkm7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kamcici.stoody"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
