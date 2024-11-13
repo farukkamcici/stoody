@@ -41,27 +41,42 @@ html{
 }
 
 ion-content,
-ion-toolbar,
 ion-footer{
-    --background: var(--ion-color-gray-100);
+    --background: var(--ion-color-light);
 }
 
-ion-toolbar {
+ion-toolbar{
     --padding-top: 0px;
     --padding-bottom: 0px;
     --padding-start: 0px;
     --padding-end: 15px;
     --border-width: 0px !important;
 
-
     ion-back-button {
-        --color: var(ion-color-dark) !important;
         text-transform: none !important;
         --icon-font-size: 20px;
         font-size: 14px !important;
         font-style: normal !important;
         font-weight: 500 !important;
         line-height: normal !important;
+    }
+}
+
+.light-bar {
+    --background: var(--ion-color-light);
+    --color: var(--ion-color-primary) !important;
+
+    ion-back-button {
+        --color: var(--ion-color-primary) !important;
+    }
+}
+
+.dark-bar{
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-light) !important;
+
+    ion-back-button {
+        --color: var(--ion-color-light) !important;
     }
 }
 

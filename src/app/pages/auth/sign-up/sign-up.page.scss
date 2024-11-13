@@ -1,0 +1,40 @@
+ion-content{
+    .top-container{
+
+        .text-container{
+            padding-top: 10%;
+            padding-bottom: 2.75rem;
+            text-align: left;
+            color: var(--ion-color-light);
+            background: var(--ion-color-primary);
+            // border-radius: 0 0 1rem 1rem;
+            
+            ion-title{
+                font-size: 2.5rem;
+                font-weight: 600;
+                padding-inline-start: 0 !important;
+            }
+        }
+        form{
+            .form-input{
+                padding-bottom: 1rem;
+            }
+
+            .form-input:first-child{
+                padding-top: 2.5rem;
+            }
+        }
+
+        .register-text{
+            display: flex;
+            justify-content: center;
+            margin-top: 4rem;
+
+            span{
+                color: var(--ion-color-warning);
+                font-weight: 600;
+            }
+        }
+    }
+
+}

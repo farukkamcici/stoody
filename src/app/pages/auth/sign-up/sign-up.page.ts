@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -16,6 +17,7 @@ export class SignUpPage {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private location: Location
   ) { }
 
   public signUp() {
@@ -27,6 +29,10 @@ export class SignUpPage {
       .catch((error) => {
         console.error("Kayıt hatası:", error);
       });
+  }
+
+  public back() {
+    this.location.back();
   }
 
 }
