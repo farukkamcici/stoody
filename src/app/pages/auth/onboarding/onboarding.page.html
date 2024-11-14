@@ -1,6 +1,26 @@
 <ion-content>
-  <ion-text>Hoşgelidiniz!</ion-text>
-  <ion-text>Stoody: Çalışma Destekçin</ion-text>
+  <div class="inner-padding">
+    <div class="image-container">
+      <img src="assets/images/stoody-onboarding-sample-1.png" alt="Onboarding Image" />
+    </div>
+    
+    <div class="text-container">
+      <ion-text class="app-name">
+        Stoody
+      </ion-text>
+    
+      <ion-text class="subtitle-text">
+        Başarıya giden yolda ilk adımı atın! <br> Planlayın, odaklanın, hedeflerinize ulaşın.
+      </ion-text>
+    </div>
 
-  <ion-button (click)="navigateToSignIn()">Stoody'e Katıl</ion-button>
+  </div>
+
 </ion-content>
+
+<ion-footer>
+  <ion-button class="full-btn" (click)="navigateToSignIn()">
+    Stoody'e Katıl
+  </ion-button>
+</ion-footer>
+

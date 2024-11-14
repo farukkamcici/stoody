@@ -40,9 +40,15 @@ html{
     font-size: 16px;
 }
 
-ion-content,
-ion-footer{
+ion-content{
     --background: var(--ion-color-light);
+}
+
+ion-footer{
+    background: var(--ion-color-light);
+    padding: 0 20px 20px 20px;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 ion-toolbar{
