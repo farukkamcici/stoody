@@ -31,6 +31,16 @@ export class SignUpPage {
       });
   }
 
+  public signInWithGoogle() {
+    this.authService.signInWithGoogle()
+      .then((res) => {
+        console.log("Google ile kayıt başarılı:", res);
+      })
+      .catch((error) => {
+        console.error("Google ile kayıt hatası:", error);
+      });
+  }
+
   public back() {
     this.location.back();
   }

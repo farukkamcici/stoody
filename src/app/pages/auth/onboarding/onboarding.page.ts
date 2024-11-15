@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,8 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./onboarding.page.scss'],
 })
 export class OnboardingPage {
-  @ViewChild('swiperRef', { static: false }) swiperRef: any; // Swiper referansı
-
   public currentSlide = 0;
   public totalSlides = 3;
 
@@ -19,6 +17,7 @@ export class OnboardingPage {
   ionViewDidEnter() {
     setTimeout(() => {
       const swiperEl = document.querySelector('swiper-container') as any;
+
       if (swiperEl && swiperEl.swiper) {
         swiperEl.swiper.slideTo(0);
         swiperEl.swiper.on('slideChange', () => {

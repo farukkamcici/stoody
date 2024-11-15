@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
-import { GoogleAuthProvider, updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider, updateProfile, User } from 'firebase/auth';
 import { map, Observable } from 'rxjs';
 import { AlertService } from './alert.service';
 
@@ -53,10 +53,34 @@ export class AuthService {
       })
   }
 
-  public signInWithGoogle() {
+  public signInWithGoogle(): Promise<void> {
     const provider = new GoogleAuthProvider();
-    return this.afAuth.signInWithPopup(provider);
+
+    return this.afAuth.signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user as User;
+
+        if (user) {
+          // Eğer kullanıcı yeni oluşturulmuşsa, veritabanında kaydet
+          return this.db.object(`users/${user.uid}`).set({
+            username: user.displayName || '',
+            email: user.email || '',
+            photoURL: user.photoURL || '',
+            provider: 'Google'
+          }).then(() => {
+            console.log('Kullanıcı veritabanına eklendi.');
+            this.router.navigate(['/home']); // Giriş sonrası yönlendirme
+          });
+        }
+        // Kullanıcı null ise return null
+        return Promise.resolve();
+      })
+      .catch((error) => {
+        this.handleGoogleError(error.code);
+        return Promise.reject(error); // Hata durumunu üst katmanda yakalama
+      });
   }
+
 
   public signOut() {
     return this.afAuth.signOut().then(() => {
@@ -118,5 +142,31 @@ export class AuthService {
     }
 
     this.alertService.presentAlert('Hata', message);
+  }
+
+  private handleGoogleError(errorCode: string) {
+    let message = '';
+
+    switch (errorCode) {
+      case 'auth/popup-closed-by-user':
+        message = 'Giriş penceresi kapatıldı, işlemi tamamlamak için tekrar deneyin.';
+        break;
+      case 'auth/cancelled-popup-request':
+        message = 'Önceki giriş isteği iptal edildi, yeniden deneyin.';
+        break;
+      case 'auth/account-exists-with-different-credential':
+        message = 'Bu e-posta başka bir doğrulama yöntemiyle kullanılıyor, farklı bir yöntemle giriş yapın.';
+        break;
+      case 'auth/operation-not-allowed':
+        message = 'Bu giriş yöntemi devre dışı bırakılmış, destekle iletişime geçin.';
+        break;
+      case 'auth/network-request-failed':
+        message = 'Ağ bağlantısı başarısız, internet bağlantınızı kontrol edin.';
+        break;
+      default:
+        message = 'Bir hata oluştu, tekrar deneyin veya destekle iletişime geçin.';
+    }
+
+    this.alertService.presentAlert('Google Giriş Hatası', message);
   }
 }

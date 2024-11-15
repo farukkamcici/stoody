@@ -17,7 +17,7 @@
       </div>
 
       <div class="inner-padding">
-        <form (ngSubmit)="signUp()">
+        <form>
 
           <div class="form-input">
             <ion-input labelPlacement="stacked"  label="Kullanıcı Adı" fill="outline" [(ngModel)]="username" name="username" type="text" required="true">
@@ -34,9 +34,24 @@
               <ion-input-password-toggle slot="end"></ion-input-password-toggle>
             </ion-input>
           </div>
-    
-          <ion-button class="full-btn" type="submit">Kayıt Ol</ion-button>
         </form>
+
+        <div class="button-container">
+          <ion-button class="dark-btn full-btn" (click)="signUp()">Kayıt Ol</ion-button>
+        </div>
+
+        <div class="or-container">
+          <div class="line"></div>
+          <ion-text class="or-text">veya</ion-text>
+          <div class="line"></div>
+        </div>
+          
+        <div class="social-buttons">
+          <ion-button class="google-btn full-btn" (click)="signInWithGoogle()">
+            <ion-icon name="logo-google" slot="start"></ion-icon>
+            Google ile Kayıt Ol
+          </ion-button>
+        </div>
 
         <div class="register-text">
           <ion-text>Zaten bir hesabın var mı? <span (click)="back()">Giriş Yap</span></ion-text>

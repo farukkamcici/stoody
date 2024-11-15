@@ -25,10 +25,40 @@ ion-content{
             }
         }
 
+        .button-container{
+            padding: 0.5rem 0 1rem 0;
+        }
+
+        .or-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            .line {
+                flex: 1;
+                height: 1px;
+                background-color: var(--ion-color-gray-200);
+                margin: 0 1rem;
+            }
+            .or-text {
+                color: var(--ion-color-gray-300);
+                font-weight: 400;
+            }
+        }
+    
+        .social-buttons{
+            padding-top: 1rem ;
+            .google-btn{
+                --background: var(--ion-color-danger);
+                color: var(--ion-color-light);
+            }
+        }
+
         .register-text{
             display: flex;
             justify-content: center;
-            margin-top: 4rem;
+            margin-top: 3.5rem;
+            padding-bottom: 2rem;
 
             span{
                 color: var(--ion-color-warning);
