@@ -1,26 +1,58 @@
 <ion-content>
-  <div class="inner-padding">
-    <div class="image-container">
-      <img src="assets/images/stoody-onboarding-sample-1.png" alt="Onboarding Image" />
-    </div>
-    
-    <div class="text-container">
-      <ion-text class="app-name">
-        Stoody
-      </ion-text>
-    
-      <ion-text class="subtitle-text">
-        Başarıya giden yolda ilk adımı atın! <br> Planlayın, odaklanın, hedeflerinize ulaşın.
-      </ion-text>
-    </div>
+    <swiper-container [loop]="false"  [pagination]="{ clickable: true }" #swiperRef>
+      
+      <swiper-slide>
+        <div class="swiper-inner inner-padding">
+            <img src="assets/images/plan.png" alt="Planning Image" />
+  
+          <div class="swiper-text">
+            <ion-text class="swiper-title">Stoody'de <br> Planla</ion-text>
+            <ion-text class="swiper-sub">Unutma, Stoody ile başarıya giden yolu organize etmek artık çok kolay.</ion-text>
+          </div>
+        </div>
+      </swiper-slide>
 
-  </div>
+      <swiper-slide>
+        <div class="swiper-inner inner-padding">
+          <div class="image-container">
+            <img src="assets/images/focus-onboarding.png" alt="Focusing Image" />
+          </div>
+  
+          <div class="swiper-text">
+            <ion-text class="swiper-title">Stoody'de <br> Odaklan</ion-text>
+            <ion-text class="swiper-sub">Verimli çalışma tekniklerini uygula ve dikkatini koru.</ion-text>
+          </div>
+        </div>
 
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="swiper-inner inner-padding">
+          <div class="image-container">
+            <img src="assets/images/achieve-onboarding.png" alt="Goals Image" />
+          </div>
+  
+          <div class="swiper-text">
+            <ion-text class="swiper-title">Stoody'de <br> Hedeflerine Ulaş</ion-text>
+            <ion-text class="swiper-sub">Hedeflerin artık sadece bir adım uzağında, Stoody'e katıl ve başar!</ion-text>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
 </ion-content>
 
 <ion-footer>
-  <ion-button class="full-btn" (click)="navigateToSignIn()">
-    Stoody'e Katıl
+  <ion-button class="skip-btn" (click)="navigateToSignIn()">
+    Atla
   </ion-button>
+
+  <div class="dark-button" (click)="handleNextClick(swiperRef)">
+    <div class="text-btn">
+      <ion-text>{{currentSlide === totalSlides - 1 ? "Stoody'e Katıl" : 'Devam Et'}}</ion-text>
+    </div>
+
+    <ion-icon name="chevron-forward-circle-outline"></ion-icon>
+  </div>
+  
 </ion-footer>
 

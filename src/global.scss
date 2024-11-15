@@ -25,6 +25,10 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+@import "~swiper/swiper-bundle.css";
+
+
+
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
@@ -88,7 +92,7 @@ ion-toolbar{
 
 ion-button,
 ion-back-button{
-    --border-radius: 7px;
+    --border-radius: 0.5rem;
     --background-hover: none;
     --background-focused: none;
     --background-activated: none;
