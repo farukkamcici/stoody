@@ -97,6 +97,10 @@ export class AuthService {
     );
   }
 
+  public getCurrentUser() {
+    return this.afAuth.authState;
+  }
+
   private handleError(errorCode: string) {
     let message = '';
 

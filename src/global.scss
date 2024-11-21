@@ -112,6 +112,16 @@ ion-tab-button{
     --ripple-color: #afc4c3;
 }
 
+ion-input{
+    background-color: var(--ion-color-light);
+    border: 1.5px solid var(--ion-color-gray-line);
+    border-radius: 0.5rem;
+    --padding-start: 0.5rem !important;
+    --padding-end: 0.5rem !important;
+    --placeholder-color: var(--ion-color-primary) !important;
+    --placeholder-opacity: 0.6 !important;
+}
+
 .full-btn{
     width: 100%;
     min-height: 50px;
@@ -131,5 +141,26 @@ ion-tab-button{
 
 .inner-padding{
     padding: 0 25px;
+}
+
+.bottom-sheet-modal{
+    --border-radius: 1rem 1rem 0 0;
+
+    .picker-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        ion-datetime{
+            --background: var(--ion-color-light) !important ;
+            --wheel-highlight-background: var(--ion-color-secondary);
+        }
+    }
+
+    ion-button{
+        min-height: 50px;
+        padding-top: 0.5rem ;
+        width: 100%;
+    }
 }
 

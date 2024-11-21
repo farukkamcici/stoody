@@ -1,0 +1,19 @@
+ion-content{
+    .question{
+        padding-top: 2rem;
+
+        ion-label{
+            color: var(--ion-color-primary);
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        ion-input{
+            margin-top: 1rem;
+        }
+
+        .date-picker-container{
+            display: block;
+        }
+    }
+}

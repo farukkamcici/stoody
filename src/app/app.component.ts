@@ -19,10 +19,10 @@ export class AppComponent {
   }
 
   public async initializeApp() {
-    await SplashScreen.show({
-      showDuration: 1000,
-      autoHide: true,
-    });
+    // await SplashScreen.show({
+    //   showDuration: 1000,
+    //   autoHide: true,
+    // });
     await SplashScreen.hide();
   }
 

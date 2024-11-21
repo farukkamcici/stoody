@@ -19,7 +19,11 @@ const routes: Routes = [
   {
     path: 'sign-in',
     loadChildren: () => import('./sign-in/sign-in.module').then(m => m.SignInPageModule)
-  }
+  },
+  {
+    path: 'personalize',
+    loadChildren: () => import('../auth/personalize/personalize.module').then(m => m.PersonalizePageModule)
+  },
 ];
 
 @NgModule({

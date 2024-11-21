@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="light-bar">
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeBottomSheet()">Kapat</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="inner-padding">
+    <div class="picker-container">
+      <ion-datetime
+      locale="tr-TR"
+      [value]="selectedDate"
+      display-format="DD MMM YYYY"
+      presentation="date"
+      preferWheel="true"
+      (ionChange)="onDateChange($event)"
+    ></ion-datetime>
+    </div>
+  
+    <ion-button (click)="confirmDate()">Seç</ion-button>
+  </div>
+
+</ion-content>
