@@ -61,6 +61,7 @@ ion-toolbar{
     --padding-start: 0px;
     --padding-end: 15px;
     --border-width: 0px !important;
+    
 
     ion-back-button {
         text-transform: none !important;
@@ -114,12 +115,17 @@ ion-tab-button{
 
 ion-input{
     background-color: var(--ion-color-light);
-    border: 1.5px solid var(--ion-color-gray-line);
+    border: 1.5px solid var(--ion-color-gray-200);
     border-radius: 0.5rem;
+    --color: var(--ion-color-primary) !important;
     --padding-start: 0.5rem !important;
     --padding-end: 0.5rem !important;
     --placeholder-color: var(--ion-color-primary) !important;
     --placeholder-opacity: 0.6 !important;
+}
+
+ion-item{
+    --ripple-color: transparent;
 }
 
 .full-btn{
@@ -143,6 +149,17 @@ ion-input{
     padding: 0 25px;
 }
 
+ion-checkbox {
+    --size: 1.5rem;
+    --checkbox-background-checked: var(--ion-color-primary);
+    --checkmark-color: var(--ion-color-light);
+}
+
+ion-checkbox::part(container) {
+    border-radius: 0.5rem;
+    border: 1px solid var(--ion-color-primary);
+}
+
 .bottom-sheet-modal{
     --border-radius: 1rem 1rem 0 0;
 
@@ -162,5 +179,10 @@ ion-input{
         padding-top: 0.5rem ;
         width: 100%;
     }
+}
+
+.ion-picker-class{
+    --background: var(--ion-color-light) !important;
+    --border-radius: 1rem 1rem 0 0;
 }
 

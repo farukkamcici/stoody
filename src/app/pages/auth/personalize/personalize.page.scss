@@ -12,8 +12,24 @@ ion-content{
             margin-top: 1rem;
         }
 
-        .date-picker-container{
-            display: block;
+        .checkbox-container{
+            margin-top: 1rem;
+            padding-bottom: 1rem;
+            background: var(--ion-color-light);
+            border: 1px solid var(--ion-color-gray-200);
+            border-radius: 1rem 1rem 1rem 1rem;
+
+
+            ion-item{
+                --background: var(--ion-color-light);
+                margin-top: 0.75rem;
+                --ripple-color:	var(--ion-color-gray-200);
+            }
         }
     }
+}
+
+ion-footer{
+    padding: 0 0 0.25rem 0;
+    text-align: center;
 }

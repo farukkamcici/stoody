@@ -84,7 +84,7 @@ export class AuthService {
 
   public signOut() {
     return this.afAuth.signOut().then(() => {
-      this.router.navigate(['auth/onboarding'])
+      this.router.navigate(['auth/sign-in'])
     });
   }
 

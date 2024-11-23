@@ -1,68 +1,103 @@
-<ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button *ngIf="currentStep > 1" (click)="goToPreviousStep()">
-        <ion-icon name="chevron-back-outline"></ion-icon>
-        Geri
-      </ion-button>
-    </ion-buttons>
-
-    <ion-progress-bar [value]="currentStep / totalSteps" type="determinate"></ion-progress-bar>
-
-    <ion-buttons slot="end">
-      <ion-button *ngIf="currentStep < totalSteps" (click)="goToNextStep()">
-        İleri
-        <ion-icon name="chevron-forward-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <div class="inner-padding">
 
     <!-- Adım 1: Doğum Tarihi -->
     <div class="question" *ngIf="currentStep === 1">
-      <ion-label>Doğum tarihin nedir?</ion-label>
+      <ion-label>Doğum tarihini bizimle paylaşır mısın?</ion-label>
       <ion-input
       placeholder="Doğum tarihini seç"
       [value]="formatToString(userData.birthDate)"
       readonly="true"
-      (click)="openDatePicker()"
+      (click)="openDatePicker('birth')"
       ></ion-input>
     </div>
 
     <!-- Adım 2: Hedef -->
     <div class="question" *ngIf="currentStep === 2">
-      <ion-label>Hedefin nedir?</ion-label>
-      <ion-input placeholder="Hedef adı" [(ngModel)]="userData.goal.name"></ion-input>
-      <ion-datetime display-format="DD MMM YYYY" [(ngModel)]="userData.goal.date"></ion-datetime>
-    </div>
+      <ion-label>Seni bu süreçte motive eden bir hedefin var mı varsa adını ve tarihini bizimle paylaşır msıın?</ion-label>
+      <ion-input placeholder="Hedef Adı" [(ngModel)]="userData.goal.name"></ion-input>
+
+      <ion-input
+      placeholder="Hedef Tarihi"
+      [value]="formatToString(userData.goal.date)"
+      readonly="true"
+      (click)="openDatePicker('goal')"
+      ></ion-input>    </div>
 
     <!-- Adım 3: Çalışma Günleri -->
     <div class="question" *ngIf="currentStep === 3">
       <ion-label>Genellikle hangi günlerde çalışmayı tercih edersin?</ion-label>
-      <ion-list>
-        <ion-item *ngFor="let day of ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar']">
-          <ion-checkbox [(ngModel)]="userData.studyDays" [value]="day" slot="start"></ion-checkbox>
+      <div class="checkbox-container">
+        <ion-item lines="none" (click)="toggleDay(idx)" *ngFor="let day of ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar']; let idx=index">
+          <ion-checkbox [(ngModel)]="userData.studyDays[idx]" [value]="day" slot="start"></ion-checkbox>
           <ion-label>{{ day }}</ion-label>
         </ion-item>
-      </ion-list>
+      </div>
     </div>
 
-    <!-- Adım 4: Haftalık Çalışma Süresi -->
-    <div class="question" *ngIf="currentStep === 4">
-      <ion-label>Haftalık kaç saat çalışmayı hedefliyorsun?</ion-label>
-      <ion-range min="0" max="40" [(ngModel)]="userData.weeklyTargetHours">
-        <ion-label slot="start">0</ion-label>
-        <ion-label slot="end">40</ion-label>
-      </ion-range>
-    </div>
+<!-- Adım 4: Haftalık Çalışma Süresi -->
+<div class="question" *ngIf="currentStep === 4">
+  <ion-label>Haftalık kaç saat çalışmayı hedefliyorsun?</ion-label>
+
+    <ion-input
+      readonly
+      [value]="'Haftalık ' + (userData.weeklyTargetHours ?? '-') + ' saat'"
+      (click)="openTargetPicker()">
+    </ion-input>
+</div>
+
+<!-- Adım 4: Haftalık Çalışma Süresi -->
+<div class="question" *ngIf="currentStep === 5">
+  <ion-label>Nasıl bir çalışma stratejisi tercih ediyorsun?</ion-label>
+
+    <ion-input
+      readonly
+      [value]="(userData.focusDuration ?? '-') + ' dk odak | ' + (userData.breakDuration ?? '-') + ' dk ara'"
+      (click)="openFocusPicker()">
+    </ion-input>
+</div>
+
 
     <!-- Adım 5: Verimli Saatler -->
-    <div class="question" *ngIf="currentStep === 5">
-      <ion-label>En verimli çalıştığın saatler hangileri?</ion-label>
-      <ion-datetime [(ngModel)]="userData.preferredHours" multiple="true"></ion-datetime>
+    <div class="question" *ngIf="currentStep === 6">
+      <ion-label>Genellikle hangi saatlerde çalışmayı tercih edersin? Birden fazla seçebilirsin.</ion-label>
+      <div class="checkbox-container">
+        <ion-item
+          lines="none"
+          (click)="togglePreferredHour(idx)"
+          *ngFor="let range of timeRanges; let idx = index"
+        >
+          <ion-checkbox
+            slot="start"
+            [(ngModel)]="userData.preferredHours[idx]"
+          ></ion-checkbox>
+          <ion-label>{{ range }}</ion-label>
+        </ion-item>
+      </div>
     </div>
+    
   </div>
+  
 </ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-progress-bar [value]="(currentStep - 1) / totalSteps" type="determinate" color="primary"></ion-progress-bar>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [disabled]="currentStep <= 1" (click)="goToPreviousStep()">
+        <ion-icon name="chevron-back-outline" color="primary"></ion-icon>
+        Geri
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">{{percentage}}% Tamamladın</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="goToNextStep()">
+        İleri
+        <ion-icon name="chevron-forward-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
