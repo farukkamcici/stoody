@@ -8,6 +8,51 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button (click)="signOut()">Çıkış yap!</ion-button>
+  <div class="profile-header">
+    <div class="avatar-container">
+      <ion-avatar>
+        <img
+          alt="Silhouette of a person's head"
+          [src]="user?.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"
+        />
+      </ion-avatar>
+    </div>
 
+    <ion-text *ngIf="user?.displayName as displayName">
+      &#64;{{ displayName }}
+    </ion-text>
+
+    <ion-text class="sub-text">{{ user?.email }}</ion-text>
+  </div>
+
+  <div class="inner-padding">
+    <div class="settings-card">
+      <ion-item lines="none">
+        <ion-text>Profilimi Düzenle</ion-text>
+        <ion-icon name="chevron-forward-outline" slot="end" color="primary"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-text>Başarılarım</ion-text>
+        <ion-icon name="chevron-forward-outline" slot="end" color="primary"></ion-icon>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-text>Uygulama İçi Ayarlar</ion-text>
+        <ion-icon name="chevron-forward-outline" slot="end" color="primary"></ion-icon>
+      </ion-item>
+    </div>
+
+    <div class="logout-container">
+      <div class="btn" (click)="signOut()">
+        <ion-text>Çıkış Yap</ion-text>
+        <ion-icon name="log-out-outline"></ion-icon>
+      </div>
+
+      <div class="btn">
+        <ion-text>Hesabı Sil</ion-text>
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </div>
+    </div>
+  </div>
 </ion-content>

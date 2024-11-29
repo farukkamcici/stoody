@@ -48,6 +48,17 @@ ion-content{
     --background: var(--ion-color-light);
 }
 
+ion-text,
+ion-label,
+ion-title,
+p,
+h1,
+h2,
+h3,
+h4{
+    color: var(--ion-color-primary);
+}
+
 ion-footer{
     background: var(--ion-color-light);
     padding: 0 20px 20px 20px;
