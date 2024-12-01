@@ -3,7 +3,7 @@ ion-content{
     .login-container{
 
         .text-container{
-            padding-top: 10%;
+            padding-top: 8%;
             padding-bottom: 2.75rem;
             text-align: left;
             color: var(--ion-color-light);
@@ -14,6 +14,11 @@ ion-content{
                 font-size: 2.5rem;
                 font-weight: 600;
                 padding-inline-start: 0 !important;
+                color: var(--ion-color-light) !important;
+            }
+
+            p{
+                color: var(--ion-color-light) !important;
             }
         }
 

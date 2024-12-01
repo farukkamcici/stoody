@@ -97,7 +97,7 @@ export class AuthService {
     );
   }
 
-  public getCurrentUser() {
+  public getCurrentUser(): Observable<any> {
     return this.afAuth.authState;
   }
 

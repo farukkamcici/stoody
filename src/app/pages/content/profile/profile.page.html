@@ -18,8 +18,8 @@
       </ion-avatar>
     </div>
 
-    <ion-text *ngIf="user?.displayName as displayName">
-      &#64;{{ displayName }}
+    <ion-text *ngIf="user?.username as username">
+      &#64;{{ username }}
     </ion-text>
 
     <ion-text class="sub-text">{{ user?.email }}</ion-text>
@@ -42,17 +42,19 @@
         <ion-icon name="chevron-forward-outline" slot="end" color="primary"></ion-icon>
       </ion-item>
     </div>
-
-    <div class="logout-container">
-      <div class="btn" (click)="signOut()">
-        <ion-text>Çıkış Yap</ion-text>
-        <ion-icon name="log-out-outline"></ion-icon>
-      </div>
-
-      <div class="btn">
-        <ion-text>Hesabı Sil</ion-text>
-        <ion-icon name="close-circle-outline"></ion-icon>
-      </div>
-    </div>
   </div>
 </ion-content>
+
+<ion-footer>
+  <div class="logout-container">
+    <div class="btn" (click)="signOut()">
+      <ion-text>Çıkış Yap</ion-text>
+      <ion-icon name="log-out-outline"></ion-icon>
+    </div>
+
+    <div class="btn">
+      <ion-text>Hesabı Sil</ion-text>
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </div>
+  </div>
+</ion-footer>

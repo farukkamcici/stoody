@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,11 +10,12 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage {
-  public user: any = null; // Initialize user as null
+  public user: any = null;
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private userService: UserService,
+    private storage: AngularFireStorage
   ) {}
 
   ionViewDidEnter() {
@@ -21,18 +24,62 @@ export class ProfilePage {
 
   public async signOut() {
     await this.authService.signOut();
-    this.router.navigate(['/login']); // Redirect to login after sign-out
   }
 
   public getUser() {
     this.authService.getCurrentUser().subscribe({
       next: (user) => {
-        this.user = user; // Assign the user details to the `user` property
-        console.log('User:', this.user);
+        if (user) {
+          this.user = { uid: user.uid, ...this.user };
+  
+          this.userService.getUserData(user.uid).subscribe((data: any) => {
+            this.user = { ...this.user, ...data };
+            console.log("user in profile", this.user);
+          });
+        }
       },
       error: (err) => {
-        console.error('Error fetching user:', err);
+        console.error('Kullanıcı bilgileri alınırken hata:', err);
       },
+    });
+  }
+  
+
+  public uploadProfilePicture(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+
+      if (this.user && this.user.uid) {
+        const filePath = `profile_photos/${this.user.uid}_${Date.now()}`;
+
+        const fileRef = this.storage.ref(filePath);
+        const uploadTask = this.storage.upload(filePath, file);
+  
+        uploadTask.snapshotChanges()
+          .pipe(
+            finalize(() => {
+              fileRef.getDownloadURL().subscribe((url) => {
+                this.updateUserProfile(url);
+              });
+            })
+          )
+          .subscribe();
+      } else {
+        console.error('User ID is undefined. Cannot upload profile picture.');
+      }
+    }
+  }
+
+  private updateUserProfile(photoURL: string) {
+    const userId = this.user.uid;
+    const data = { photoURL };
+
+    this.userService.saveUserData(userId, data).then(() => {
+      this.user.photoURL = photoURL;
+      console.log('Profil fotoğrafı başarıyla güncellendi.');
+    }).catch(err => {
+      console.error('Profil güncelleme hatası:', err);
     });
   }
 }
