@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -15,7 +16,8 @@ export class ProfilePage {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private router: Router
   ) {}
 
   ionViewDidEnter() {
@@ -81,5 +83,9 @@ export class ProfilePage {
     }).catch(err => {
       console.error('Profil güncelleme hatası:', err);
     });
+  }
+
+  navigateToEdit() {
+    this.router.navigate(['content/profile-edit']);
   }
 }

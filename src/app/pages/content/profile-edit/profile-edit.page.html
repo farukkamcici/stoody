@@ -1,0 +1,115 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back-outline" defaultHref="/content/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profili Düzenle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-container inner-padding" *ngIf="user">
+    <form>
+      <!-- Kullanıcı Adı -->
+      <div class="form-input">
+        <ion-input 
+          labelPlacement="stacked" 
+          label="Kullanıcı Adı" 
+          fill="outline" 
+          [(ngModel)]="user.username" 
+          name="username" 
+          type="text" 
+          required="true">
+        </ion-input>
+      </div>
+
+      <!-- E-posta -->
+      <div class="form-input">
+        <ion-input 
+          labelPlacement="stacked" 
+          label="E-posta" 
+          fill="outline" 
+          [(ngModel)]="user.email" 
+          name="email" 
+          type="email">
+        </ion-input>
+      </div>
+
+      <!-- Doğum Tarihi -->
+      <div class="form-input">
+        <ion-input 
+          placeholder="Doğum Tarihini Seç" 
+          readonly="true" 
+          [value]="formatToString(user.birthDate)" 
+          (click)="openDatePicker('birth')">
+        </ion-input>
+      </div>
+
+      <!-- Hedef -->
+      <div class="form-input">
+        <ion-input 
+          placeholder="Hedef Adı" 
+          [(ngModel)]="user.goal.name" 
+          name="goalName">
+        </ion-input>
+        <ion-input 
+          placeholder="Hedef Tarihi" 
+          readonly="true" 
+          [value]="formatToString(user.goal.date)" 
+          (click)="openDatePicker('goal')">
+        </ion-input>
+      </div>
+
+      <!-- Çalışma Günleri -->
+      <div class="form-input">
+        <ion-label>Çalışma Günleri</ion-label>
+        <div class="checkbox-container">
+          <ion-item lines="none" *ngFor="let day of ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar']; let idx = index">
+            <ion-checkbox 
+              [(ngModel)]="user.studyDays[idx]" 
+              slot="start">
+            </ion-checkbox>
+            <ion-label>{{ day }}</ion-label>
+          </ion-item>
+        </div>
+      </div>
+
+      <!-- Haftalık Çalışma Süresi -->
+      <div class="form-input">
+        <ion-input 
+          placeholder="Haftalık Hedef Saatler" 
+          [(ngModel)]="user.weeklyTargetHours" 
+          name="weeklyTargetHours" 
+          type="number" 
+          required="true">
+        </ion-input>
+      </div>
+
+      <!-- Çalışma Stratejisi -->
+      <div class="form-input">
+        <ion-input 
+          placeholder="Odak ve Ara Süresi" 
+          readonly="true" 
+          [value]="user.focusDuration + ' dk odak | ' + user.breakDuration + ' dk ara'" 
+          (click)="openFocusPicker()">
+        </ion-input>
+      </div>
+
+      <!-- Tercih Edilen Saatler -->
+      <div class="form-input">
+        <ion-label>Tercih Edilen Çalışma Saatleri</ion-label>
+        <div class="checkbox-container">
+          <ion-item lines="none" *ngFor="let range of timeRanges; let idx = index">
+            <ion-checkbox 
+              [(ngModel)]="user.preferredHours[idx]" 
+              slot="start">
+            </ion-checkbox>
+            <ion-label>{{ range }}</ion-label>
+          </ion-item>
+        </div>
+      </div>
+    </form>
+
+    <ion-button expand="block" color="primary" (click)="saveChanges()">Kaydet</ion-button>
+  </div>
+</ion-content>
